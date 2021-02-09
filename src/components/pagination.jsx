@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Context from '../blockbusterheadline/useContext'
+import { Context } from '../blockbusterheadline/useContext'
 
 class Pagination extends Component {
     state = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { newsCategory } from './newsCategory'
-import Context from '../blockbusterheadline/useContext'
+import { Context } from '../blockbusterheadline/useContext'
 
 class Header extends React.Component {
 

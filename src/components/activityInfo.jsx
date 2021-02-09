@@ -1,9 +1,9 @@
 import React from 'react'
-import Context from '../blockbusterheadline/useContext'
+import { Consumer } from '../blockbusterheadline/useContext'
 
 const ActivityInfo = () => {
     return (
-        <Context.Consumer>
+        <Consumer>
             {({ totalResults, currentPage, totalPage}) => (
                 <div className="d-flex">
                     <p className="text-black-50">
@@ -14,7 +14,7 @@ const ActivityInfo = () => {
                     </p>
                 </div>
             )}
-        </Context.Consumer>
+        </Consumer>
 
     )
 }
