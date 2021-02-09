@@ -1,15 +1,21 @@
 import React from 'react'
+import { Consumer } from '../blockbusterheadline/useContext'
 
-const ActivityInfo = props => {
+const ActivityInfo = () => {
     return (
-        <div className="d-flex">
-            <p className="text-black-50">
-                About {props.totalResults} results found
-        </p>
-            <p className="text-black-50 ml-auto">
-                {props.currentPage} page to {props.totalPage}
-            </p>
-        </div>
+        <Consumer>
+            {({ totalResults, currentPage, totalPage}) => (
+                <div className="d-flex">
+                    <p className="text-black-50">
+                        About {totalResults} results found
+                    </p>
+                    <p className="text-black-50 ml-auto">
+                        {currentPage} page to {totalPage}
+                    </p>
+                </div>
+            )}
+        </Consumer>
+
     )
 }
 

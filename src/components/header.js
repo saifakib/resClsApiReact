@@ -1,5 +1,6 @@
 import React from 'react';
 import { newsCategory } from './newsCategory'
+import { Context } from '../blockbusterheadline/useContext'
 
 class Header extends React.Component {
 
@@ -15,12 +16,11 @@ class Header extends React.Component {
 
     handleKeyPress = e => {
         if (e.key === 'Enter') {
-            this.props.search(this.state.searchTerm)
+            this.context.search(this.state.searchTerm)
         }
     }
 
     render() {
-        const { category, changeCategory } = this.props;
         return (
             <div className='my-4'>
                 <h1 className="mb-4" style={{ fontWeight: '300' }}>
@@ -37,15 +37,15 @@ class Header extends React.Component {
                 <div className="my-4">
                     {newsCategory &&
                         Object.keys(newsCategory).map(item => {
-                            if (category === newsCategory[item]) {
+                            if (this.context.category === newsCategory[item]) {
                                 return (
-                                    <button onClick={() => changeCategory(newsCategory[item])} className="btn btn-sm btn-warning mr-2 mb-2">
+                                    <button onClick={() => this.context.changeCategory(newsCategory[item])} className="btn btn-sm btn-warning mr-2 mb-2">
                                         {`#${newsCategory[item]}`}
                                     </button>
                                 )
                             }
                             return (
-                                <button onClick={() => changeCategory(newsCategory[item])} className="btn btn-sm btn-light mr-2 mb-2">
+                                <button onClick={() => this.context.changeCategory(newsCategory[item])} className="btn btn-sm btn-light mr-2 mb-2">
                                     {`#${newsCategory[item]}`}
                                 </button>
                             )
@@ -56,5 +56,7 @@ class Header extends React.Component {
         )
     }
 }
+
+Header.contextType = Context;
 
 export default Header;

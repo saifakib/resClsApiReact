@@ -1,12 +1,17 @@
 import React from 'react'
 import NewsItem from './newsItem'
+import { Consumer } from '../blockbusterheadline/useContext';
 
-const NewsList = ({ news }) => {
+const NewsList = () => {
     return (
-        <div>
-            {news && news.length === 0 && <h4>There is no news</h4>}
-            {news && news.map(item => <NewsItem key={item.title} item={item} />)}
-        </div>
+        <Consumer>
+            {({article}) => (
+                <div>
+                    {article && article.length === 0 && <h4>There is no news</h4>}
+                    {article && article.map(item => <NewsItem key={item.title} item={item} />)}
+                </div>
+            )}
+        </Consumer>
     )
 }
 
