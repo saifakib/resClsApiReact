@@ -115,7 +115,6 @@ class App extends Component {
             totalPage,
             totalResults,
             category } = this.state.data
-        console.log(isNext, totalResults, totalPage, currentPage)
         return (
             <div className="container my-4">
                 <div className="row mb-4">
