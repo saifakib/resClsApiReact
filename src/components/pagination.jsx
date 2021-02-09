@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import Context from '../blockbusterheadline/useContext'
 
-export class Pagination extends Component {
+class Pagination extends Component {
     state = {
         isEditable: false
     }
@@ -14,8 +15,7 @@ export class Pagination extends Component {
             totalPage,
             handlePageChange,
             gotoPage
-        } = this.props;
-        console.log(totalPage, currentPage)
+        } = this.context;
         return (
             <div className="d-flex my-5 align-items-center justify-contents-center">
                 <button className="btn btn-warning" disabled={!isPrivious} onClick={() => privious()}>Privious</button>
@@ -47,5 +47,7 @@ export class Pagination extends Component {
         )
     }
 }
+
+Pagination.contextType = Context
 
 export default Pagination

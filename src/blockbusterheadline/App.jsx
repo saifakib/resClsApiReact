@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Context from './useContext';
 import Header from '../components/header'
 import NewsLists from '../components/newslists'
 import Pagination from '../components/pagination'
@@ -115,32 +116,44 @@ class App extends Component {
             totalPage,
             totalResults,
             category } = this.state.data
-        console.log(isNext, totalResults, totalPage, currentPage)
         return (
+
             <div className="container my-4">
                 <div className="row mb-4">
                     <div className="col-sm-6 offset-md-3">
-                        <Header category={category} changeCategory={this.changeCategory} search={this.searchTerm}/>
-                        <ActivityInfo totalResults={totalResults} totalPage={totalPage} currentPage={currentPage} />
-                        {this.state.isLoading ? (
-                            <Loading />
-                        ) : (
 
-                                <div>
-                                    <NewsLists news={article} />
-                                    <Pagination
-                                        next={this.next}
-                                        privious={this.privious}
-                                        isNext={isNext}
-                                        isPrivious={isPrivious}
-                                        currentPage={currentPage}
-                                        totalPage={totalPage}
-                                        handlePageChange={this.handlePageChange}
-                                        gotoPage={this.gotoPage}
-                                    />
-                                </div>
+                        <Context.Provider value={{
+                            ...this.state.data,
+                            changeCategory: this.changeCategory,
+                            search: this.searchTerm,
+                            next: this.next,
+                            privious: this.privious,
+                            handlePageChange: this.handlePageChange,
+                            gotoPage: this.gotoPage
+                        }}>
+                            <Header />
+                            <ActivityInfo />
+                            {this.state.isLoading ? (
+                                <Loading />
+                            ) : (
 
-                            )}
+                                    <div>
+                                        <NewsLists />
+                                        <Pagination
+                                            next={this.next}
+                                            privious={this.privious}
+                                            isNext={isNext}
+                                            isPrivious={isPrivious}
+                                            currentPage={currentPage}
+                                            totalPage={totalPage}
+                                            handlePageChange={this.handlePageChange}
+                                            gotoPage={this.gotoPage}
+                                        />
+                                    </div>
+
+                                )}
+                        </Context.Provider>
+
                     </div>
                 </div>
             </div>
